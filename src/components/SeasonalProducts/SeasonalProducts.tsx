@@ -18,13 +18,13 @@ const SeasonalProducts = () => {
 
     useEffect(() => {
         setIsSeasonalLoading(true)
-        getSeasonalProducts()
+        setTimeout(() => getSeasonalProducts()
             .then(data => {
                 setSeasonProds(data)
             })
             .finally(() => {
                 setIsSeasonalLoading(false)
-            })
+            }), 1500)
     }, [])
     
     return (
