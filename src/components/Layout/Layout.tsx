@@ -9,6 +9,7 @@ import ListHeader from '../ListHeader/ListHeader';
 import List from '../List/List';
 import NewproductInput from '../NewproductInput/NewproductInput';
 import { globalStyles } from '../../styles/global';
+import SeasonalProducts from '../SeasonalProducts/SeasonalProducts';
 
 const Layout = () => {
     const prods = useAppSelector((state) => state.products)
@@ -16,6 +17,7 @@ const Layout = () => {
     return (
         <View style={globalStyles.container}>
             <ListHeader />
+            <SeasonalProducts />
 			{prods && 
                 <List />
 			}
