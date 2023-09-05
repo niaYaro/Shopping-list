@@ -18,9 +18,9 @@ const NewproductInput = () => {
                 }
             ])
         } else if (prods) {
-			dispatch(add({id: getId(prods), title: query}))
+			dispatch(add({id: getId(prods), title: query, inCart: false}))
 		} else {
-            dispatch(add({id: 1, title: query}))
+            dispatch(add({id: 1, title: query, inCart: false}))
 		}
 		setQuery('')
 	}
