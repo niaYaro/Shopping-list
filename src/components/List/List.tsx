@@ -13,7 +13,7 @@ const prods = useAppSelector((state) => state.products)
                     <Text
                         style={styles.productText}
                     >
-                        {prod.id}. {prod.title}
+                        {prod.id}. {prod.title .slice(0,1).toUpperCase() + prod.title.slice(1)}
                     </Text>
                     <BouncyCheckbox
                         fillColor="green"
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 	},
 	productText: {
 		fontSize: 24,
+        
 	},
 	productTextTaken: {
 		textDecorationLine: 'line-through'
