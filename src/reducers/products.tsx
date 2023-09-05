@@ -10,11 +10,20 @@ const productSlice = createSlice({
         add: (products, action: PayloadAction<Product>) => {
             products.push(action.payload)
         },
-        // set: (products, action: PayloadAction<string>) => {
-        //     products.push({ id: 1, title: action.payload})]
-        // },
+        toggleInCart: (products, action: PayloadAction<Product>) => {
+            return products.map(prod => {
+                if (prod.id === action.payload.id) {
+                    return {
+                        ...prod,
+                        inCart: !prod.inCart,
+                        
+                    }
+                }
+                return prod
+            })
+        },
     }
 })
 
 export default productSlice.reducer;
-export const { add } = productSlice.actions;
+export const { add, toggleInCart } = productSlice.actions;
