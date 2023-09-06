@@ -22,8 +22,12 @@ const productSlice = createSlice({
                 return prod
             })
         },
+        deleteAll: (products) => {
+            products = [];
+            return products;
+        },
     }
 })
 
 export default productSlice.reducer;
-export const { add, toggleInCart } = productSlice.actions;
+export const { add, toggleInCart, deleteAll } = productSlice.actions;
