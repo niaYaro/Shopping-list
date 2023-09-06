@@ -26,10 +26,11 @@ const NewproductInput = () => {
 	}
 
     return (
-        <View>
+        <View style={styles.button}>
             <TextInput
                 style={styles.input}
                 value={query}
+                placeholder='Text a product'
                 onChangeText={(val) => setQuery(val)}
             ></TextInput>
             <View>
@@ -51,5 +52,8 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		marginBottom: 15,
 		borderRadius: 5,
+	},
+	button: {
+		paddingBottom: 20,
 	},
 });     

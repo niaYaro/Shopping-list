@@ -37,7 +37,14 @@ export default List
 
 const styles = StyleSheet.create({
 	productContainer: {
-		paddingBottom: 15,
+        backgroundColor: 'white',
+        elevation: 2,
+        marginBottom: 10,
+        marginHorizontal: 5,
+		padding: 5,
+        borderRadius: 10,
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
 		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'center',
