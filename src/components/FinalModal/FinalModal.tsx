@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { Modal, Pressable, StyleSheet, Text, View} from 'react-native'
+import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../../hooks';
 import { deleteAll } from '../../reducers/products';
+import { AntDesign } from '@expo/vector-icons';
 
 const FinalModal = () => {
 const prods = useAppSelector((state) => state.products)
@@ -16,22 +17,28 @@ return (
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        // onRequestClose={() => {
-        // setModalVisible(!modalVisible);
-        // }}
         >
         <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-            <Text style={styles.modalText}>You did it! All items are good to go. Proceed to checkout!</Text>
-            <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => {
-                setModalVisible(!modalVisible)
-                dispatch(deleteAll())
-                }}>
-            <Text style={styles.textStyle}>Create new list</Text>
-            </Pressable>
-        </View>
+          <View style={styles.modalView}>
+              <View style={styles.closeBtn}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setModalVisible(false)
+                    }}
+                >
+                  <AntDesign name="close" size={24} color="black" />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.modalText}>You did it! All items are good to go. Proceed to checkout!</Text>
+              <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {
+                  setModalVisible(!modalVisible)
+                  dispatch(deleteAll())
+                  }}>
+              <Text style={styles.textStyle}>Create new list</Text>
+              </Pressable>
+          </View>
         </View>
     </Modal>
 )
@@ -39,28 +46,32 @@ return (
 
 const styles = StyleSheet.create({
     centeredView: {
-        // backgroundColor: 'rgba(0, 151, 19)',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        // opacity: 0.2,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        // marginTop: 22,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     modalView: {
       margin: 20,
       backgroundColor: 'white',
       borderRadius: 20,
-      padding: 35,
+      padding: 15,
       alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
+      // shadowColor: '#000',
+      // shadowOffset: {
+      //   width: 0,
+      //   height: 2,
+      // },
+      // shadowOpacity: 0.25,
+      // shadowRadius: 4,
       elevation: 5,
+    },
+    closeBtn: {
+      flex: 0,
+      alignItems: 'flex-end',
+      width: 300,
+      paddingBottom: 10,
+      justifyContent: 'flex-end'
     },
     button: {
       borderRadius: 20,

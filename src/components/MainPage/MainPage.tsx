@@ -5,11 +5,13 @@ import SeasonalProducts from '../SeasonalProducts/SeasonalProducts'
 import NewproductInput from '../NewproductInput/NewproductInput'
 import List from '../List/List'
 import { useAppSelector } from '../../hooks'
+import { StatusBar } from 'expo-status-bar'
 
 const MainPage = () => {
     const prods = useAppSelector((state) => state.products)
     return (
         <View style={styles.container}>
+            <StatusBar style='auto'/>
             <ListHeader />
             <SeasonalProducts />
             {prods && 
