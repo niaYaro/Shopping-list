@@ -4,8 +4,15 @@ import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../../hooks';
 import { deleteAll } from '../../reducers/products';
 import { AntDesign } from '@expo/vector-icons';
+import { getSeasonalProducts } from '../../helpers/helper';
 
-const FinalModal = () => {
+interface Props {
+  setSeasonalOffers: (arg: string[]) => void;
+}
+
+const FinalModal: React.FC<Props> = ({
+  setSeasonalOffers,
+}) => {
 const prods = useAppSelector((state) => state.products)
 const dispatch = useDispatch();
 const [modalVisible, setModalVisible] = useState(false);
@@ -34,7 +41,11 @@ return (
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
                   setModalVisible(!modalVisible)
-                  dispatch(deleteAll())
+                  dispatch(deleteAll());
+                  getSeasonalProducts()
+                    .then(data => {
+                        setSeasonalOffers(data)
+                    })
                   }}>
               <Text style={styles.textStyle}>Create new list</Text>
               </Pressable>

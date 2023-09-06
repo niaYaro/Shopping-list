@@ -10,17 +10,26 @@ import { getId, getSeasonalProducts } from '../../helpers/helper';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { add } from '../../reducers/products';
 
-const SeasonalProducts = () => {
-    const [seasonProds, setSeasonProds] = useState([]);
+interface Props {
+    seasonalOffers: string[];
+    setSeasonalOffers: (arg: string[]) => void;
+}
+
+const SeasonalProducts: React.FC<Props> = ({
+    seasonalOffers,
+    setSeasonalOffers,
+}) => {
+    // const [seasonProds, setSeasonProds] = useState([]);
     const [isSeasonalLoading, setIsSeasonalLoading] = useState(false);
     const dispatch = useAppDispatch();
-    const prods = useAppSelector((state) => state.products)
-
+    const prods = useAppSelector((state) => state.products);
+    // const isListEmpty = seasonProds.length === 0;
+    
     useEffect(() => {
         setIsSeasonalLoading(true)
         setTimeout(() => getSeasonalProducts()
             .then(data => {
-                setSeasonProds(data)
+                setSeasonalOffers(data)
             })
             .finally(() => {
                 setIsSeasonalLoading(false)
@@ -36,19 +45,21 @@ const SeasonalProducts = () => {
                 />
                 : <View>
                     <Text>
-                        {seasonProds.length > 0 && (
+                        {seasonalOffers.length > 0 && (
                             'The following products are in high demand this season:'
                         )}
                     </Text>
                     <View
                         style={styles.seasonalBox}
                     >
-                        {seasonProds.map((prod, i) => 
+                        {seasonalOffers.map((prod, i) => 
                             <TouchableOpacity
                             key={i}
                             style={styles.seasonalBtn}
                             onPress={() => {
-                                setSeasonProds((prev) => prev.filter(p => p !== prod))
+                                const updatedSeasonalOffers = seasonalOffers.filter(p => p !== prod);
+                                setSeasonalOffers(updatedSeasonalOffers);
+                                // setSeasonalOffers((prev: string[]) => prev.filter(p => p !== prod))
                                 dispatch(add({id: getId(prods), title: prod, inCart: false}))
                             }}
                             >

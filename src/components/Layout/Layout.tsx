@@ -7,7 +7,7 @@ import MainPage from '../MainPage/MainPage';
 const Layout = () => {
     return (
         <View style={globalStyles.container}>
-            <FinalModal />
+            {/* <FinalModal /> */}
             <MainPage/>
 		</View>
     )
