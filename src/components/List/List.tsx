@@ -19,7 +19,7 @@ return (
                 return (
                 <View style={styles.productContainer} key={prod.id}>
                     <Text style={dynemicTextStyle}>
-                        {prod.id}. {prod.title .slice(0,1).toUpperCase() + prod.title.slice(1)}
+                        {prod.id}. {prod.title .slice(0, 1).toUpperCase() + prod.title.slice(1)}
                     </Text>
                     <BouncyCheckbox
                         fillColor="green"

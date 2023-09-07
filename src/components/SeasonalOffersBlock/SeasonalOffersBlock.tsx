@@ -70,12 +70,14 @@ export default SeasonalOffersBlock
 const styles = StyleSheet.create({
 	seasonalBox: {
         flexDirection: 'row',
-		padding: 10,
+        flexWrap: 'wrap',
+		paddingVertical: 10,
 	},
 	seasonalBtn: {
         paddingHorizontal: 10,
         paddingVertical: 5,
         marginLeft: 10,
+        marginBottom: 10,
         backgroundColor: 'green',
         borderRadius: 15,
 	},
