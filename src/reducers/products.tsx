@@ -16,7 +16,6 @@ const productSlice = createSlice({
                     return {
                         ...prod,
                         inCart: !prod.inCart,
-                        
                     }
                 }
                 return prod

@@ -8,7 +8,7 @@ const SeasonalOffersContext = createContext<{
 export function useSeasonalOffers() {
   const context = useContext(SeasonalOffersContext);
   if (context === undefined) {
-    throw new Error('useSeasonalOffers must be used within a SeasonalOffersProvider');
+    throw new Error('Seasonal Offers is undefined');
   }
   return context;
 }
