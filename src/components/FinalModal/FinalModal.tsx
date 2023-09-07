@@ -5,7 +5,7 @@ import { useAppSelector } from '../../hooks';
 import { deleteAll } from '../../reducers/products';
 import { AntDesign } from '@expo/vector-icons';
 import { getSeasonalProducts } from '../../helpers/helper';
-import { useSeasonalOffers } from '../contexts/SeasonalOffersContext';
+import { useSeasonalOffers } from '../../contexts/SeasonalOffersContext';
 
 
 const FinalModal: React.FC = () => {

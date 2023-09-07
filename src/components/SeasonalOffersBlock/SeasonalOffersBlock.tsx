@@ -9,7 +9,7 @@ import {
 import { getId, getSeasonalProducts } from '../../helpers/helper';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { add } from '../../reducers/products';
-import { useSeasonalOffers } from '../contexts/SeasonalOffersContext';
+import { useSeasonalOffers } from '../../contexts/SeasonalOffersContext';
 
 
 const SeasonalOffersBlock: React.FC = () => {
