@@ -5,17 +5,14 @@ import { useAppSelector } from '../../hooks';
 import { deleteAll } from '../../reducers/products';
 import { AntDesign } from '@expo/vector-icons';
 import { getSeasonalProducts } from '../../helpers/helper';
+import { useSeasonalOffers } from '../contexts/SeasonalOffersContext';
 
-interface Props {
-  setSeasonalOffers: (arg: string[]) => void;
-}
 
-const FinalModal: React.FC<Props> = ({
-  setSeasonalOffers,
-}) => {
+const FinalModal: React.FC = () => {
 const prods = useAppSelector((state) => state.products)
 const dispatch = useDispatch();
 const [modalVisible, setModalVisible] = useState(false);
+const { seasonalOffers, setSeasonalOffers } = useSeasonalOffers();
 
 useEffect(() => {setModalVisible(prods.length > 0 && prods.every(prod => prod.inCart === true))}, [prods])
 
@@ -68,13 +65,6 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       padding: 15,
       alignItems: 'center',
-      // shadowColor: '#000',
-      // shadowOffset: {
-      //   width: 0,
-      //   height: 2,
-      // },
-      // shadowOpacity: 0.25,
-      // shadowRadius: 4,
       elevation: 5,
     },
     closeBtn: {

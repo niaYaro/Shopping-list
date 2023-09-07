@@ -8,8 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/FinalModal/FinalModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FinalModal/FinalModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/List.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MainPage/MainPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainPage/MainPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SeasonalProducts/SeasonalProducts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SeasonalProducts/SeasonalProducts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/helper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/helper.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

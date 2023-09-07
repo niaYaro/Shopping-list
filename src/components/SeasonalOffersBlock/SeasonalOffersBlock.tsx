@@ -9,21 +9,14 @@ import {
 import { getId, getSeasonalProducts } from '../../helpers/helper';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { add } from '../../reducers/products';
+import { useSeasonalOffers } from '../contexts/SeasonalOffersContext';
 
-interface Props {
-    seasonalOffers: string[];
-    setSeasonalOffers: (arg: string[]) => void;
-}
 
-const SeasonalProducts: React.FC<Props> = ({
-    seasonalOffers,
-    setSeasonalOffers,
-}) => {
-    // const [seasonProds, setSeasonProds] = useState([]);
+const SeasonalOffersBlock: React.FC = () => {
     const [isSeasonalLoading, setIsSeasonalLoading] = useState(false);
     const dispatch = useAppDispatch();
     const prods = useAppSelector((state) => state.products);
-    // const isListEmpty = seasonProds.length === 0;
+    const { seasonalOffers, setSeasonalOffers} = useSeasonalOffers();
     
     useEffect(() => {
         setIsSeasonalLoading(true)
@@ -31,6 +24,9 @@ const SeasonalProducts: React.FC<Props> = ({
             .then(data => {
                 setSeasonalOffers(data)
             })
+            .catch(error => {
+                console.error('Error fetching seasonal products:', error);
+              })
             .finally(() => {
                 setIsSeasonalLoading(false)
             }), 1500)
@@ -49,20 +45,16 @@ const SeasonalProducts: React.FC<Props> = ({
                             'The following products are in high demand this season:'
                         )}
                     </Text>
-                    <View
-                        style={styles.seasonalBox}
-                    >
+                    <View style={styles.seasonalBox}>
                         {seasonalOffers.map((prod, i) => 
                             <TouchableOpacity
-                            key={i}
-                            style={styles.seasonalBtn}
-                            onPress={() => {
-                                const updatedSeasonalOffers = seasonalOffers.filter(p => p !== prod);
-                                setSeasonalOffers(updatedSeasonalOffers);
-                                // setSeasonalOffers((prev: string[]) => prev.filter(p => p !== prod))
-                                dispatch(add({id: getId(prods), title: prod, inCart: false}))
-                            }}
-                            >
+                                key={i}
+                                style={styles.seasonalBtn}
+                                onPress={() => {
+                                    const updatedSeasonalOffers = seasonalOffers.filter(p => p !== prod);
+                                    setSeasonalOffers(updatedSeasonalOffers);
+                                    dispatch(add({id: getId(prods), title: prod, inCart: false}))
+                                }}>
                                 <Text style={styles.seasonalText}>+ {prod}</Text>
                             </TouchableOpacity>
                         )}
@@ -73,7 +65,7 @@ const SeasonalProducts: React.FC<Props> = ({
     )
 }
 
-export default SeasonalProducts
+export default SeasonalOffersBlock
 
 const styles = StyleSheet.create({
 	seasonalBox: {
