@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { useAppSelector } from '../../hooks'
 import { useDispatch } from 'react-redux'
@@ -18,10 +18,8 @@ return (
 
                 return (
                 <View style={styles.productContainer} key={prod.id}>
-                    <Text
-                        style={dynemicTextStyle}
-                    >
-                        {prod.id}. {prod.title .slice(0,1).toUpperCase() + prod.title.slice(1)}
+                    <Text style={dynemicTextStyle}>
+                        {prod.id}. {prod.title .slice(0, 1).toUpperCase() + prod.title.slice(1)}
                     </Text>
                     <BouncyCheckbox
                         fillColor="green"
