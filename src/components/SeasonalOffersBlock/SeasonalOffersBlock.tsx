@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import { getId, getSeasonalProducts } from '../../helpers/helper';
+import { getId, getSeasonalOffers } from '../../helpers/helper';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { add } from '../../reducers/products';
 import { useSeasonalOffers } from '../../contexts/SeasonalOffersContext';
@@ -20,7 +20,7 @@ const SeasonalOffersBlock: React.FC = () => {
     
     useEffect(() => {
         setIsSeasonalLoading(true)
-        setTimeout(() => getSeasonalProducts()
+        setTimeout(() => getSeasonalOffers()
             .then(data => {
                 setSeasonalOffers(data)
             })
@@ -35,31 +35,28 @@ const SeasonalOffersBlock: React.FC = () => {
     return (
         <View>
             {isSeasonalLoading
-                ? <ActivityIndicator 
-                    size="large"
-                    color="green"
-                />
-                : <View>
-                    <Text>
-                        {seasonalOffers.length > 0 && (
-                            'The following products are in high demand this season:'
-                        )}
-                    </Text>
-                    <View style={styles.seasonalBox}>
-                        {seasonalOffers.map((prod, i) => 
-                            <TouchableOpacity
-                                key={i}
-                                style={styles.seasonalBtn}
-                                onPress={() => {
-                                    const updatedSeasonalOffers = seasonalOffers.filter(p => p !== prod);
-                                    setSeasonalOffers(updatedSeasonalOffers);
-                                    dispatch(add({id: getId(prods), title: prod, inCart: false}))
-                                }}>
-                                <Text style={styles.seasonalText}>+ {prod}</Text>
-                            </TouchableOpacity>
-                        )}
-                    </View>
+            ? <ActivityIndicator size="large" color="green" />
+            : <View>
+                <Text>
+                    {seasonalOffers.length > 0 && (
+                        'The following products are in high demand this season:'
+                    )}
+                </Text>
+                <View style={styles.seasonalBox}>
+                    {seasonalOffers.map((prod, i) => 
+                        <TouchableOpacity
+                            key={i}
+                            style={styles.seasonalBtn}
+                            onPress={() => {
+                                const updatedSeasonalOffers = seasonalOffers.filter(p => p !== prod);
+                                setSeasonalOffers(updatedSeasonalOffers);
+                                dispatch(add({id: getId(prods), title: prod, inCart: false}))
+                            }}>
+                            <Text style={styles.seasonalText}>+ {prod}</Text>
+                        </TouchableOpacity>
+                    )}
                 </View>
+            </View>
             }
         </View>
     )

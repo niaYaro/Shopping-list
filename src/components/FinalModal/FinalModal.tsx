@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../../hooks';
 import { deleteAll } from '../../reducers/products';
 import { AntDesign } from '@expo/vector-icons';
-import { getSeasonalProducts } from '../../helpers/helper';
+import { getSeasonalOffers } from '../../helpers/helper';
 import { useSeasonalOffers } from '../../contexts/SeasonalOffersContext';
 
 
@@ -12,7 +12,7 @@ const FinalModal: React.FC = () => {
 const prods = useAppSelector((state) => state.products)
 const dispatch = useDispatch();
 const [modalVisible, setModalVisible] = useState(false);
-const { seasonalOffers, setSeasonalOffers } = useSeasonalOffers();
+const { setSeasonalOffers } = useSeasonalOffers();
 
 useEffect(() => {setModalVisible(prods.length > 0 && prods.every(prod => prod.inCart === true))}, [prods])
 
@@ -33,18 +33,18 @@ return (
                   <AntDesign name="close" size={24} color="black" />
                 </TouchableOpacity>
               </View>
-              <Text style={styles.modalText}>You did it! All items are good to go. Proceed to checkout!</Text>
+              <Text style={styles.modalText}>You did it! All items are good to go. Proceed to the store checkout!</Text>
               <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {
-                  setModalVisible(!modalVisible)
-                  dispatch(deleteAll());
-                  getSeasonalProducts()
-                    .then(data => {
-                        setSeasonalOffers(data)
-                    })
-                  }}>
-              <Text style={styles.textStyle}>Create new list</Text>
+                style={styles.button}
+                onPress={() => {
+                    setModalVisible(!modalVisible)
+                    dispatch(deleteAll());
+                    getSeasonalOffers()
+                      .then(data => {
+                          setSeasonalOffers(data)
+                      })
+                    }}>
+                <Text style={styles.textStyle}>Create new list</Text>
               </Pressable>
           </View>
         </View>
@@ -78,11 +78,6 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       padding: 10,
       elevation: 2,
-    },
-    buttonOpen: {
-      backgroundColor: '#F194FF',
-    },
-    buttonClose: {
       backgroundColor: 'green',
     },
     textStyle: {
